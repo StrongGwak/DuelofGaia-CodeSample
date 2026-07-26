@@ -27,20 +27,6 @@ Steam 출시작 **[Duel of Gaia](https://store.steampowered.com/app/4779190/Duel
 | `Scripts/UI/Stage`, `Manager/StageManager`, `Stage/StageSelector` | **스테이지 선택** — 덱 선택 패널, 해금 판정, 툴팁 | 단독 설계·구현 |
 | `Scripts/Manager/SteamManager` | **Steam 연동** — Steamworks 초기화 | 단독 구현 |
 
-## 눈여겨볼 만한 파일
-
-- `Manager/CardManager.cs` — 융합 레시피를 "정렬된 카드명" 키의 딕셔너리로 구축해,
-  드로우 시점 융합 판정을 조합 순회(nCk) 없이 조회 한 번으로 처리
-- `Character/Component/CardComponent.cs` — 융합 재료 패시브 억제(참조 카운팅),
-  카드 소모를 스킬 발동 확정 시점까지 지연하는 결합과 3경로 대칭 정리(`CleanupPending`)
-- `Skill/Action/ChainSkillAction.cs` — 스킬 데이터에 정의된 필터/소터를 런타임에 재활용해
-  연쇄 대상 탐색, `OverlapSphereNonAlloc`으로 GC 할당 회피
-- `Effect/EffectAction/DrawAction.cs` — 스킬 프레임워크와 카드 시스템의 통합 지점
-- `Manager/InputManager.cs` — 입력 수집과 적용을 분리한 누적 버퍼 파이프라인
-  (LateUpdate 한 곳에서만 클램프·적용)
-- `UI/Menu/Option/Control/KeyRebindRow.cs` — New Input System 리바인딩의 함정 처리와
-  키 충돌 해제
-
 ## 제외한 것
 
 - 모든 에셋, 씬, 프리팹, ScriptableObject 데이터 인스턴스 (카드 208종 / 스킬 341종)
