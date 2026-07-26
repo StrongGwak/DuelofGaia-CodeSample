@@ -1,0 +1,14 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / IDE
+.vs/
+.idea/
+.vscode/
+*.user
+*.suo
+
+# Unity meta files — 이 저장소는 Unity 프로젝트가 아니라 코드 발췌본입니다
+*.meta
