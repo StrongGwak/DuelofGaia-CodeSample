@@ -25,6 +25,7 @@ Steam 출시작 **[Duel of Gaia](https://store.steampowered.com/app/4779190/Duel
 | `Scripts/Data/Tutorial`, `Manager/TutorialManager·StageTutorialManager`, `UI/Ingame/Tutorial`, `UI/Stage/TutorialPromptUI` | **데이터 주도 튜토리얼** — ScriptableObject 스텝 리스트 + 이벤트 구독 완료 판정, 2-러너 구조 | 단독 설계·구현 |
 | `Scripts/Manager/SaveManager·AudioManager`, `UI/Menu/Option`, `UI/Text/LocalizedText`, `UI/LocalizableUI` | **옵션 / 저장 / 로컬라이제이션** — 런타임 언어 전환, 오디오 믹서, 설정·진행 저장 | 단독 설계·구현 |
 | `Scripts/UI/Stage`, `Manager/StageManager`, `Stage/StageSelector` | **스테이지 선택** — 덱 선택 패널, 해금 판정, 툴팁 | 단독 설계·구현 |
+| `Scripts/Utils/ShaderWarmup·FontWarmup`, `Scene/TitleScene`, `Scripts/Profiling/PerfProbe` | **로딩 워밍업 / 성능 계측** — 셰이더 변형·폰트 아틀라스를 로딩 화면에서 프레임 분산 워밍업, 재현 가능한 A/B 계측 프로브 | 단독 설계·구현 |
 | `Scripts/Manager/SteamManager` | **Steam 연동** — Steamworks 초기화 | 단독 구현 |
 
 ## 제외한 것
