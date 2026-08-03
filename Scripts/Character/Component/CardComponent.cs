@@ -301,6 +301,7 @@ public class CardComponent : BaseCharacterComponent
 
     /// <summary>재료 카드 참조들로 만드는 순서 무관 융합 레시피 키.</summary>
     /// <remarks>에셋 이름 대신 InstanceID를 쓴다 — 리네임·동명 에셋에 영향받지 않는다.
+    /// InstanceID는 세션 내에서만 유효하다. 영속화가 필요하면 CodeName을 쓸 것.
     /// 재료 수가 가변이므로(일반 2장, 드래곤 6장) 배열 전체를 비교한다.</remarks>
     private readonly struct FusionKey : IEquatable<FusionKey>
     {
