@@ -40,7 +40,7 @@ public class CardComponent : BaseCharacterComponent
     private Dictionary<Skill, CardController> skillToCardMap = new();
     private Dictionary<CardData, int> fusionSuppressedCards = new();
     // 자기 덱의 융합 레시피만 보유 — 상대 덱 레시피로는 융합되지 않는다
-    private Dictionary<string, CardData> fusionResultByKey = new();
+    private Dictionary<FusionKey, CardData> fusionResultByKey = new();
     private Dictionary<CardData, List<CardData>> ownIngredientsByResult = new();
     private IEventMediator<CharacterEventType> eventMediator;
     private bool isDrawing;   // 드로우 코루틴(애니메이션+융합 판정) 진행 중 재진입 방지
@@ -73,7 +73,7 @@ public class CardComponent : BaseCharacterComponent
         this.eventMediator = eventMediator;
     }
 
-    public void SetUp(Duelist duelist)
+    public void SetUp(Duelist duelist, IReadOnlyList<DeckData> loadout)
     {
         if (duelist == null || duelist.SkillSystem == null || duelist.Stats == null)
         {
@@ -89,7 +89,8 @@ public class CardComponent : BaseCharacterComponent
         statsComponent.TryGetStat(handSizeStatData, out handSizeStat);
 
         isPlayer = duelist.IsPlayer;
-        deckDatas = isPlayer ? DeckManager.Instance.SelectedDeckDatas : DeckManager.Instance.AiDeckDatas;
+        // 전역 DeckManager 참조 제거 — 듀얼리스트별 로드아웃을 주입받는다 (팀전에서 각자 다른 덱 필요)
+        deckDatas = loadout != null ? new List<DeckData>(loadout) : new List<DeckData>();
 
         // 플레이어/AI 공통: 덱 타입에 따라 융합 가능 여부 설정 + 자기 덱 레시피 등록
         fusionResultByKey.Clear();
@@ -104,8 +105,8 @@ public class CardComponent : BaseCharacterComponent
             if (d.FusionRecipes == null) continue;
             foreach (var recipe in d.FusionRecipes)
             {
-                if (recipe?.Ingredients == null || recipe.Result == null) continue;
-                string key = GenerateFusionKey(recipe.Ingredients);
+                if (recipe?.Ingredients == null || recipe.Ingredients.Count == 0 || recipe.Result == null) continue;
+                var key = GenerateFusionKey(recipe.Ingredients);
                 fusionResultByKey[key] = recipe.Result;
                 ownIngredientsByResult[recipe.Result] = recipe.Ingredients;
             }
@@ -210,6 +211,14 @@ public class CardComponent : BaseCharacterComponent
         return true;
     }
 
+    /// <summary>드로우 포인트를 지급한다. setter가 MaxValue로 clamp하므로 상한까지만 회복되며,
+    /// 소모성 리소스라 Effect 해제 시 되돌리지 않는다.</summary>
+    public void AddDrawPoint(float amount)
+    {
+        if (drawPointStat == null) return;
+        drawPointStat.CurrentValue += amount;
+    }
+
     public void DrawCardWithoutPoint(int drawCount, GameObject effectPrefab = null)
     {
         StartCoroutine(DrawCardsCoroutine(drawCount, null, effectPrefab));
@@ -290,23 +299,50 @@ public class CardComponent : BaseCharacterComponent
         return deckCards[randomIndex];
     }
 
-    /// <summary>카드 이름을 정렬해 "+"로 이어붙인 융합 레시피 조회 키를 만든다.</summary>
-    private static string GenerateFusionKey(List<CardData> cards)
+    /// <summary>재료 카드 참조들로 만드는 순서 무관 융합 레시피 키.</summary>
+    /// <remarks>에셋 이름 대신 InstanceID를 쓴다 — 리네임·동명 에셋에 영향받지 않는다.
+    /// 재료 수가 가변이므로(일반 2장, 드래곤 6장) 배열 전체를 비교한다.</remarks>
+    private readonly struct FusionKey : IEquatable<FusionKey>
     {
-        List<string> names = new();
-        foreach (CardData card in cards)
+        private readonly int[] ids;
+        private readonly int hash;
+
+        public FusionKey(List<CardData> cards)
         {
-            names.Add(card.name);
+            ids = new int[cards.Count];
+            for (int i = 0; i < cards.Count; i++)
+                ids[i] = cards[i] != null ? cards[i].GetInstanceID() : 0;
+
+            Array.Sort(ids);
+
+            int h = 17;
+            foreach (int id in ids)
+                h = h * 31 + id;
+            hash = h;
         }
 
-        names.Sort();
-        return string.Join("+", names);
+        public bool Equals(FusionKey other)
+        {
+            if (ids == null || other.ids == null) return ids == other.ids;
+            if (ids.Length != other.ids.Length) return false;
+
+            for (int i = 0; i < ids.Length; i++)
+                if (ids[i] != other.ids[i]) return false;
+
+            return true;
+        }
+
+        public override bool Equals(object obj) => obj is FusionKey other && Equals(other);
+        public override int GetHashCode() => hash;
     }
+
+    /// <summary>재료 카드 목록으로 융합 레시피 조회 키를 만든다.</summary>
+    private static FusionKey GenerateFusionKey(List<CardData> cards) => new(cards);
 
     /// <summary>자기 덱에 등록된 레시피로만 융합 결과를 조회한다.</summary>
     private CardData TryGetFusionResult(List<CardData> cards)
     {
-        string key = GenerateFusionKey(cards);
+        var key = GenerateFusionKey(cards);
         return fusionResultByKey.TryGetValue(key, out var result) ? result : null;
     }
 

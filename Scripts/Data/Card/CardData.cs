@@ -8,7 +8,7 @@ public enum CardType { Use, Spawn, Equipment, Passive, All }
 /// 카드의 정보를 가진 스크립터블 오브젝트 클래스
 /// </summary>
 [CreateAssetMenu(fileName = "NewCardData", menuName = "Scriptable Objects/CardData")]
-public class CardData : ScriptableObject
+public class CardData : GameData
 {
     // 카드 타입
     [SerializeField] private CardType cardType;

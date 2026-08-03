@@ -19,13 +19,13 @@ Steam 출시작 **[Duel of Gaia](https://store.steampowered.com/app/4779190/Duel
 
 | 폴더 | 내용 | 소유 |
 |---|---|---|
-| `Scripts/Data/Card`, `Data/Deck`, `Manager/CardManager·DeckManager`, `Character/Component/CardComponent`, `UI/Card`, `UI/Deck` | **카드 / 덱 시스템** — 4계층(Data → Component → Controller → UI) 구조, 융합 판정, 손패 관리 | 단독 설계·구현 |
+| `Scripts/Data/Card`, `Data/Deck`, `Manager/DeckManager`, `Character/Component/CardComponent`, `UI/Card`, `UI/Deck` | **카드 / 덱 시스템** — 4계층(Data → Component → Controller → UI) 구조, 융합 판정, 손패 관리 | 단독 설계·구현 |
 | `Scripts/Skill/Action`, `Scripts/Effect/EffectAction`, `Scripts/TargetSearcher/IndicatorViewAction`, `UI/Display` | **스킬 프레임워크 확장** — 팀이 구축한 프레임워크의 확장 규약(SkillAction / EffectAction)에 맞춰 작성한 액션들과 타겟 인디케이터 | 확장 구현 (베이스는 팀원 구축, 미포함) |
 | `Scripts/Manager/InputManager`, `UI/Menu/Option/Control`, `UI/Button/KeyBindButton` | **멀티플랫폼 입력** — 5개 입력 소스를 누적 버퍼로 통합한 카메라 파이프라인, 키 리바인딩 | 주 구현 |
 | `Scripts/Data/Tutorial`, `Manager/TutorialManager·StageTutorialManager`, `UI/Ingame/Tutorial`, `UI/Stage/TutorialPromptUI` | **데이터 주도 튜토리얼** — ScriptableObject 스텝 리스트 + 이벤트 구독 완료 판정, 2-러너 구조 | 단독 설계·구현 |
 | `Scripts/Manager/SaveManager·AudioManager`, `UI/Menu/Option`, `UI/Text/LocalizedText`, `UI/LocalizableUI` | **옵션 / 저장 / 로컬라이제이션** — 런타임 언어 전환, 오디오 믹서, 설정·진행 저장 | 단독 설계·구현 |
 | `Scripts/UI/Stage`, `Manager/StageManager`, `Stage/StageSelector` | **스테이지 선택** — 덱 선택 패널, 해금 판정, 툴팁 | 단독 설계·구현 |
-| `Scripts/Utils/ShaderWarmup·FontWarmup`, `Scene/TitleScene`, `Scripts/Profiling/PerfProbe` | **로딩 워밍업 / 성능 계측** — 셰이더 변형·폰트 아틀라스를 로딩 화면에서 프레임 분산 워밍업, 재현 가능한 A/B 계측 프로브 | 단독 설계·구현 |
+| `Scripts/Utils/ShaderWarmup·FontWarmup`, `Scene/TitleScene`, `Scripts/Profiling/PerfProbe` | **로딩 워밍업 / 성능 계측** — 셰이더 변형·폰트 아틀라스를 로딩 화면에서 프레임 분산 워밍업, 재현 가능한 A/B 계측 프로브 ([CSV 스키마·측정 환경](Scripts/Profiling/README.md) + [측정 데이터](Scripts/Profiling/perf.csv)) | 단독 설계·구현 |
 | `Scripts/Manager/SteamManager` | **Steam 연동** — Steamworks 초기화 | 단독 구현 |
 
 ## 제외한 것

@@ -42,7 +42,7 @@ public class CardInfoUI : BaseUI
     {
         if (cardData == null || cardData.SkillData == null) return;
         SkillData skillData = cardData.SkillData;
-        cardName.text = LocalizationSettings.StringDatabase.GetLocalizedString("CardName", cardData.name);
+        cardName.text = LocalizationSettings.StringDatabase.GetLocalizedString("CardName", cardData.CodeName);
         cardType = cardData.CardType;
 
         RefreshUI();

@@ -1,0 +1,21 @@
+run,segment,timestamp,frames,maxMs,medianMs,meanMs,over16,over33
+before,stage_enter,2026-07-29 18:00,30,872.33,9,39.34,2,2
+before,deck_panel_open,2026-07-29 18:00,104,253.4,7.27,9.65,1,1
+before,stage_enter,2026-07-29 18:01,30,722.73,8.92,34.51,2,2
+before,deck_panel_open,2026-07-29 18:01,79,447.41,7.12,12.71,1,1
+before,stage_enter,2026-07-29 18:02,30,772.69,8.98,36.24,2,2
+before,deck_panel_open,2026-07-29 18:02,84,412.28,7.1,11.96,1,1
+before,stage_enter,2026-07-29 18:02,30,563.16,8.9,29.49,2,2
+before,deck_panel_open,2026-07-29 18:02,87,370.25,7.32,11.53,1,1
+before,stage_enter,2026-07-29 18:03,30,1013.55,11.55,44.58,2,2
+before,deck_panel_open,2026-07-29 18:03,103,242.32,7.35,9.71,1,1
+after,stage_enter,2026-07-29 18:06,30,170.2,9.69,16.86,2,2
+after,deck_panel_open,2026-07-29 18:06,136,13.43,7.35,7.39,0,0
+after,stage_enter,2026-07-29 18:06,30,170.05,9.15,16.47,2,2
+after,deck_panel_open,2026-07-29 18:06,135,14.71,7.37,7.41,0,0
+after,stage_enter,2026-07-29 18:07,30,171.77,9.08,16.06,2,2
+after,deck_panel_open,2026-07-29 18:07,136,12.37,7.35,7.38,0,0
+after,stage_enter,2026-07-29 18:07,30,174.25,9.09,16.68,2,2
+after,deck_panel_open,2026-07-29 18:07,136,14,7.37,7.4,0,0
+after,stage_enter,2026-07-29 18:08,30,182.72,11.71,18.15,4,2
+after,deck_panel_open,2026-07-29 18:08,136,13.96,7.35,7.39,0,0
