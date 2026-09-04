@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -212,8 +212,6 @@ public class CardController : MonoBehaviour, IPointerClickHandler, IDragHandler,
         }
         else if (CardData.CardType == CardType.Use)
         {
-            //Debug.Log("USE");
-            
             OnSkillCast?.Invoke(mainSkill);
         }
         

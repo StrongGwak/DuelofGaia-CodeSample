@@ -11,10 +11,7 @@ public class BurnResourceAction : EffectAction
         // 타겟이 null이거나 이미 죽은 상태인지 확인
         if (target == null || target.IsDead) return false;
 
-        
         burnedValue = Mathf.Min(defaultValue, target.Stats.SkillCost);
-        // 글씨가 두개 뜨는데 어색하면 주석의 코드 사용
-        //target.ConsumeSkillCost(user, effect, burnedValue, false);
         target.ConsumeSkillCost(user, effect, burnedValue);
         target.TakeDamage(user, effect, burnedValue);
         return true;

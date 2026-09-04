@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using DG.Tweening;
 using TMPro;
@@ -46,8 +46,6 @@ public class CardUI : BaseUI
     private HorizontalLayoutGroup horizontalLayoutGroup;
     private Skill currentSkill;
     private Coroutine cooldownCoroutine;
-    
-    //private Canvas cardCanvas;
 
     private void Awake()
     {

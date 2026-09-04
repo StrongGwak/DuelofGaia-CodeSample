@@ -1,4 +1,4 @@
-using DG.Tweening;
+﻿using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -137,8 +137,6 @@ public class DecreaseStatAction : EffectAction, IFloatingTextProvider
                 else
                     target.Stats.SetBonusValue(stat.Data, effect, bonusValue);
 
-                // 디버그용
-                //Debug.Log($"[DecreaseStatAction] restoredAmount={restoredAmount}, remain={remain - restoreAmount}, bonusValue={bonusValue}");
             }
 
         }

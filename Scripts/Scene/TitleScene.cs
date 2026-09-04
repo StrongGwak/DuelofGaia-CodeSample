@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -58,57 +58,6 @@ public class TitleScene : BaseScene
         InitializeUIState();
         RegisterButtonEvents();
         StartMainMenu();
-    }
-
-    private void Update()
-    {
-        /*if (Keyboard.current != null && Keyboard.current.deleteKey.wasPressedThisFrame)
-            ResetStageProgress();
-
-        if (Keyboard.current != null && Keyboard.current.endKey.wasPressedThisFrame)
-            SetPrefs();
-
-        if (Keyboard.current != null && Keyboard.current.homeKey.wasPressedThisFrame)
-            ResetSettings();*/
-    }
-
-    private void ResetStageProgress()
-    {
-        SaveManager.ResetGame();
-        Debug.Log("[Debug] 스테이지 정복 정보 초기화 완료");
-    }
-
-    private void ResetSettings()
-    {
-        SaveManager.ResetSettings();
-    }
-
-    private void SetPrefs()
-    {
-        Define.Scene[] stages =
-        {
-            Define.Scene.Light, Define.Scene.Fire, Define.Scene.Fire_Light,
-            Define.Scene.Might, Define.Scene.Nature, Define.Scene.Might_Nature,
-            Define.Scene.Death, Define.Scene.Darkness, Define.Scene.Death_Darkness,
-            Define.Scene.Storm, Define.Scene.Water, Define.Scene.Storm_Water,
-            Define.Scene.Red, Define.Scene.Blue, Define.Scene.Black, Define.Scene.Green,
-        };
-
-        Define.Scene[] advancedStages =
-        {
-            Define.Scene.Light, Define.Scene.Fire, Define.Scene.Might, Define.Scene.Nature,
-            Define.Scene.Death, Define.Scene.Darkness, Define.Scene.Storm, Define.Scene.Water,
-        };
-
-        foreach (var stage in stages)
-        {
-            SaveManager.Game.stageCleared.Set(stage.ToString(), true);
-        }
-        foreach (var stage in advancedStages)
-        {
-            SaveManager.Game.stageCleared.Set("Advanced" + stage, true);
-        }
-        SaveManager.SaveGame();
     }
 
     private void InitializeUIState()

@@ -1,4 +1,4 @@
-using NUnit.Framework.Internal;
+﻿using NUnit.Framework.Internal;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -50,7 +50,6 @@ public class MultitemApplyAction : SkillAction
                 Debug.Log($"{target.name} already has an item. Skipping item application.");
                 continue;
             }
-            //Debug.Log($"Applying item '{randomItem.ItemName}' to {target.name}");
 
             Skill itemSkill = new Skill(randomItem.ItemSkillData);
             itemSkill.Setup(skill.Owner);

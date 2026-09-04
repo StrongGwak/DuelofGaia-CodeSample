@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -641,7 +641,6 @@ public sealed class InputManager : MonoBehaviour
                 _currentCharacter = null;
             }
             OnCharacterSelected?.Invoke(null);
-            //Debug.Log("InputManager: No character selected.");
         }
     }
 

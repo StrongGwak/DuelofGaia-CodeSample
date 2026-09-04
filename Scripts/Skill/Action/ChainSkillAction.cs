@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -43,7 +43,6 @@ public class ChainSkillAction : SkillAction
             yield return cachedVolleyWait;
             
             var nextTarget = FindNearestValidTarget(skill, currentTarget.transform.position, hitTargets);
-            //Debug.Log($"{i} Chain Next : {nextTarget}");
             if (nextTarget == null) break;
             
             SpawnSkillObjectAt(skill, currentTarget, nextTarget);

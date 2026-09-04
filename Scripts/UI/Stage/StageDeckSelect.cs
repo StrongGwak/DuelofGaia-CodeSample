@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -401,7 +401,6 @@ public class StageDeckSelect : MonoBehaviour
 
     private void UpdateTexts()
     {
-        //if (!deckSelectPanel.gameObject.activeSelf) return;
         if (currentStage != null)
         {
             stageName.text = LocalizationSettings.StringDatabase.GetLocalizedString("StageName", currentStage.SceneType.ToString());

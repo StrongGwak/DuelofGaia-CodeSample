@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -36,8 +36,6 @@ public class IncreaseStatAction : EffectAction
         {
             return false;
         }
-
-        //Debug.Log(stat.Data.CodeName +"is increase to " +target.ToString());
 
         if (!target.Stats.TryGetStat(stat.Data, out var result)) return false;
 

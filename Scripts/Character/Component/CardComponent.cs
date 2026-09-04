@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -159,7 +159,6 @@ public class CardComponent : BaseCharacterComponent
                 Skill skill = skillSystem.GetOrRegisterSkill(card.SkillData);
                 if (skill.IsPassive) skillSystem.SetPassiveSkillActive(skill, false);
                 if (!card.IsDrawable) continue;
-                //Debug.Log($"{card} 추가");
                 for (int i = 0; i < card.CardCount; i++)
                     drawPile.Add(card);
             }
@@ -444,14 +443,6 @@ public class CardComponent : BaseCharacterComponent
         {
             handSizeStat.onValueChanged += OnHandSizeChanged;
         }
-
-        var owner = GetComponent<BaseCharacter>();
-
-        // 플레이어만 UI 이벤트 구독
-        /*if (owner.IsPlayer)
-        {
-            UIManager.Instance.OnDrawed += DrawCardWithPoint;
-        }*/
     }
 
     public override void UnsubscribeEvent()
@@ -465,14 +456,6 @@ public class CardComponent : BaseCharacterComponent
         {
             handSizeStat.onValueChanged -= OnHandSizeChanged;
         }
-
-        var owner = GetComponent<BaseCharacter>();
-
-        // 플레이어만 UI 이벤트 구독 해제
-        /*if (owner.IsPlayer)
-        {
-            UIManager.Instance.OnDrawed -= DrawCardWithPoint;
-        }*/
     }
 
     private void OnDrawPointChanged(Stat stat, float current, float prev)

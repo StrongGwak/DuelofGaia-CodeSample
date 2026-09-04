@@ -113,11 +113,6 @@ public class RewardAction : SkillAction
     protected override IReadOnlyDictionary<string, string> GetStringsByKeyword()
     {
         return new Dictionary<string, string>();
-        /*var dictionary = new Dictionary<string, string>()
-        {
-            
-        };
-        return dictionary;*/
     }
     
     public override object Clone()

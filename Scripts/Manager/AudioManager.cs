@@ -57,12 +57,6 @@ public class AudioManager : MonoBehaviour
         if (audioData?.AudioClip == null) return;
         bgmSource.clip = audioData.AudioClip;
         bgmSource.Play();
-        
-        /*
-        if (!bgmClips.TryGetValue(sceneType, out var audioData)) return;
-        if (audioData?.AudioClip == null) return;
-        bgmSource.clip = audioData.AudioClip;
-        bgmSource.Play();*/
     }
     
     private Define.Scene ResolveFusionScene(Define.Scene sceneType)

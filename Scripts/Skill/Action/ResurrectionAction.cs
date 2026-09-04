@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -26,8 +26,6 @@ public class ResurrectionAction : SkillAction
             Debug.LogWarning("ResurrectionAction: SpawnManager.Instance 없음");
             return;
         }
-
-        //Debug.Log($"ResurrectionAction: resurrect up to {targetCount} targets (hpRate={healthRate}).");
 
         int resurrected = 0;
         for (int i = 0; i < skill.Targets.Count && resurrected < targetCount; i++)
